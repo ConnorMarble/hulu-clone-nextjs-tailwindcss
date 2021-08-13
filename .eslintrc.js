@@ -6,6 +6,7 @@ module.exports = {
         jest: true,
     },
     extends: [
+        "next/core-web-vitals",
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "airbnb-base",
@@ -24,6 +25,7 @@ module.exports = {
         "prettier/prettier": ["error", { endOfLine: "auto" }],
         "import/extensions": "off",
         "import/no-unresolved": "error",
+        "import/no-extraneous-dependencies": "off",
         "no-console": "off",
         "import/order": [
             "error",
