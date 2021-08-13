@@ -1,54 +1,53 @@
 /* eslint-disable prettier/prettier */
 module.exports = {
     env: {
-        browser: true,
+        es2021: true,
         node: true,
-        es2020: true,
+        jest: true,
     },
-    parser: "@typescript-eslint/parser",
-    parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: "module",
-        ecmaFeatures: {
-            jsx: true,
-        },
-    },
-    plugins: ["@typescript-eslint", "react", "prettier"],
     extends: [
-        "airbnb",
-        "airbnb/hooks",
+        "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended",
+        "airbnb-base",
+        "plugin:prettier/recommended",
         "plugin:import/errors",
         "plugin:import/warnings",
         "plugin:import/typescript",
-        "prettier",
     ],
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+        ecmaVersion: 12,
+        sourceType: "module",
+    },
+    plugins: ["@typescript-eslint", "prettier", "import"],
     rules: {
-        "react/jsx-filename-extension": [1, { extensions: [".ts", ".tsx"] }],
+        "prettier/prettier": ["error", { endOfLine: "auto" }],
         "import/extensions": "off",
-        "react/prop-types": "off",
-        "jsx-a11y/anchor-is-valid": "off",
-        "react/jsx-props-no-spreading": ["error", { custom: "ignore" }],
-        "prettier/prettier": "error",
-        "react/no-unescaped-entities": "off",
-        "import/no-cycle": [0, { ignoreExternal: true }],
-        "prefer-const": "off",
-        // needed because of https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use & https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined
-        "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": [
+        "import/no-unresolved": "error",
+        "no-console": "off",
+        "import/order": [
             "error",
-            { functions: false, classes: false, variables: true },
+            {
+                "newlines-between": "never",
+                groups: [
+                    ["builtin", "external"],
+                    ["internal", "parent", "sibling", "index"],
+                ],
+            },
         ],
     },
     settings: {
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts"],
+        },
         "import/resolver": {
-            "babel-module": {
-                extensions: [".js", ".jsx", ".ts", ".tsx"],
-            },
-            node: {
-                extensions: [".js", ".jsx", ".ts", ".tsx"],
-                paths: ["src"],
+            typescript: {
+                alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+
+                // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
+
+                // use <root>/path/to/folder/tsconfig.json
+                project: "./tsconfig.json",
             },
         },
     },
