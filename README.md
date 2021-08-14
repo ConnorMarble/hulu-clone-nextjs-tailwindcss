@@ -8,6 +8,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the npm install or yarn.
 
+You will need an api key from [themoviedb.org](https://www.themoviedb.org/) and add it to your env file.
+
 Then start the server:
 
 ```bash
